@@ -49,15 +49,14 @@ namespace SolarSystemObjects
             return this.a;
         }
 
-        public List<double> calculateCoordsByDay(int day) // Расчёт Координат объекта в определённый день
+        public List<float> calculateCoordsByDay(int day) // Расчёт Координат объекта в определённый день
         {
             double omega = 2 * Math.PI / this.T;
             double teta = omega * day;
             double x = this.a * Math.Cos(teta);
-            double y = this.a * Math.Sin(teta);
-            double z = y * Math.Sin(this.i);
-            return new List<double>() { x, y, z };
+            double z = this.a * Math.Sin(teta);
+            double y = z * Math.Sin(this.i * 0.0174533);
+            return new List<float>() { (float)x, (float)y, (float)z };
         }
-
     }
 }

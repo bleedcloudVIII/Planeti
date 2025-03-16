@@ -5,7 +5,7 @@ namespace SolarSystemObjects
 {
     public class SolarSystemObjects
     {
-        public SolarSystemObject Mercury = new SolarSystemObject()
+        public static SolarSystemObject Mercury = new SolarSystemObject()
         {
             start_x = 0,
             start_y = 0,
@@ -16,7 +16,7 @@ namespace SolarSystemObjects
             i = 7.0049863889,
         };
 
-        public SolarSystemObject Venus = new SolarSystemObject()
+        public static SolarSystemObject Venus = new SolarSystemObject()
         {
             start_x = 0,
             start_y = 0,
@@ -27,7 +27,7 @@ namespace SolarSystemObjects
             i = 3.3946619444,
         };
 
-        public SolarSystemObject Earth = new SolarSystemObject()
+        public static SolarSystemObject Earth = new SolarSystemObject()
         {
             start_x = 0,
             start_y = 0,
@@ -38,7 +38,7 @@ namespace SolarSystemObjects
             i = 0.0,
         };
 
-        public SolarSystemObject Mars = new SolarSystemObject()
+        public static SolarSystemObject Mars = new SolarSystemObject()
         {
             start_x = 0,
             start_y = 0,
@@ -49,7 +49,7 @@ namespace SolarSystemObjects
             i = 1.8497263889,
         };
 
-        public SolarSystemObject Jupiter = new SolarSystemObject()
+        public static SolarSystemObject Jupiter = new SolarSystemObject()
         {
             start_x = 0,
             start_y = 0,
@@ -60,7 +60,7 @@ namespace SolarSystemObjects
             i = 1.3032697222,
         };
 
-        public SolarSystemObject Saturn = new SolarSystemObject()
+        public static SolarSystemObject Saturn = new SolarSystemObject()
         {
             start_x = 0,
             start_y = 0,
@@ -71,7 +71,7 @@ namespace SolarSystemObjects
             i = 2.4888780556,
         };
 
-        public SolarSystemObject Uranus = new SolarSystemObject()
+        public static SolarSystemObject Uranus = new SolarSystemObject()
         {
             start_x = 0,
             start_y = 0,
@@ -82,7 +82,7 @@ namespace SolarSystemObjects
             i = 0.77319611,
         };
 
-        public SolarSystemObject Neptune = new SolarSystemObject()
+        public static SolarSystemObject Neptune = new SolarSystemObject()
         {
             start_x = 0,
             start_y = 0,
@@ -93,7 +93,7 @@ namespace SolarSystemObjects
             i = 1.7699522,
         };
 
-        public SolarSystemObject Pluto = new SolarSystemObject()
+        public static SolarSystemObject Pluto = new SolarSystemObject()
         {
             start_x = 0,
             start_y = 0,
