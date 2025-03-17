@@ -10,8 +10,9 @@ public class Test : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        List<float> a = SolarSystemObjects.SolarSystemObjects.Mercury.calculateCoordsByDay(day);
+        List<float> a = SolarSystemObjects.SolarSystemObjects.Jupiter.calculateCoordsByDay(0, 0, 0, day);
         transform.position = new Vector3(a[0], a[1], a[2]);
+        transform.localScale = new Vector3((float)SolarSystemObjects.SolarSystemObjects.Jupiter.R * 1000, (float)SolarSystemObjects.SolarSystemObjects.Jupiter.R * 1000, (float)SolarSystemObjects.SolarSystemObjects.Jupiter.R * 1000);
         day++;
         //UnityEngine.Debug.Log("I am alive!");
         //for (int i = 1; i <= SolarSystemObjects.SolarSystemObjects.Mars.T; i++)
@@ -40,7 +41,8 @@ public class Test : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        List<float> a = SolarSystemObjects.SolarSystemObjects.Mercury.calculateCoordsByDay(day);
+        List<float> a = SolarSystemObjects.SolarSystemObjects.Jupiter.calculateCoordsByDay(0, 0, 0, day);
+        UnityEngine.Debug.Log($"day {day} ({a[0]}; {a[1]}; {a[2]})");
         transform.position = new Vector3(a[0], a[1], a[2]);
         day++;
     }

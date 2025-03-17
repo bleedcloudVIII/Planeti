@@ -37,6 +37,8 @@ namespace SolarSystemObjects
 
         public double i { get; set; } // Наклон орбиты
 
+        public double R { get; set; } // Радиус объекта
+
         public double calculateT(double a) // Расчёт Периода обращения
         {
             this.T = Math.Pow(a, 3.0 / 2.0);
@@ -49,13 +51,14 @@ namespace SolarSystemObjects
             return this.a;
         }
 
-        public List<float> calculateCoordsByDay(int day) // Расчёт Координат объекта в определённый день
+        // middle точки это точка, вокруг которой происходит вращение
+        public List<float> calculateCoordsByDay(double middle_x, double middle_y, double middle_z, int day) // Расчёт Координат объекта в определённый день
         {
             double omega = 2 * Math.PI / this.T;
             double teta = omega * day;
-            double x = this.a * Math.Cos(teta);
-            double z = this.a * Math.Sin(teta);
-            double y = z * Math.Sin(this.i * 0.0174533);
+            double x = middle_x + this.a * Math.Cos(teta);
+            double z = middle_z + this.a * Math.Sin(teta);
+            double y = middle_y + z * Math.Sin(this.i * 0.0174533);
             return new List<float>() { (float)x, (float)y, (float)z };
         }
     }
