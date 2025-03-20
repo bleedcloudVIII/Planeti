@@ -5,6 +5,15 @@ namespace SolarSystemObjects
 {
     public class SolarSystemObjects
     {
+        public static SolarSystemObject Moon = new SolarSystemObject()
+        {
+            e = 0.055,
+            T = 27.322,
+            a = 0.0025695553,
+            i = 5.14,
+            R = 0.000011613802,
+        };
+
         public static SolarSystemObject Mercury = new SolarSystemObject()
         {
             start_x = 0,

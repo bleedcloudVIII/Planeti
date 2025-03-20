@@ -4,21 +4,6 @@ using UnityEngine;
 
 namespace SolarSystemObjects
 {
-    // Скорее всего потом удалится
-    //public enum SolarSystemObjects
-    //{
-    //    Sun,
-    //    Mercury,
-    //    Venus,
-    //    Earth,
-    //    Mars,
-    //    Jupiter,
-    //    Saturn,
-    //    Uranus,
-    //    Neptune,
-    //    Pluto
-    //}
-
     public class SolarSystemObject
     {
         public double start_x { get; set; } // Начальные координаты объекта по оси x
