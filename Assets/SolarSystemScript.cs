@@ -17,20 +17,20 @@ public class Main : MonoBehaviour
     public Vector3 venusPosition = new Vector3(0, 0, 0);
 
 
-    int day = 0;
+    ulong day = 0;
 
     void Start()
     {
-        SolarSystemObjects.SolarSystemObjects.Earth.T = 1500;
+        SolarSystemObjects.SolarSystemObjects.Mercury.T = 1500;
         SolarSystemObjects.SolarSystemObjects.Venus.T = 5000;
         SolarSystemObjects.SolarSystemObjects.Moon.T = 500;
 
 
         moon.localScale = new Vector3((float)SolarSystemObjects.SolarSystemObjects.Moon.R * 1000, (float)SolarSystemObjects.SolarSystemObjects.Moon.R * 1000, (float)SolarSystemObjects.SolarSystemObjects.Moon.R * 1000);
-        earth.localScale = new Vector3((float)SolarSystemObjects.SolarSystemObjects.Earth.R * 1000, (float)SolarSystemObjects.SolarSystemObjects.Earth.R * 1000, (float)SolarSystemObjects.SolarSystemObjects.Earth.R * 1000);
+        earth.localScale = new Vector3((float)SolarSystemObjects.SolarSystemObjects.Mercury.R * 1000, (float)SolarSystemObjects.SolarSystemObjects.Mercury.R * 1000, (float)SolarSystemObjects.SolarSystemObjects.Mercury.R * 1000);
         venus.localScale = new Vector3((float)SolarSystemObjects.SolarSystemObjects.Venus.R * 1000, (float)SolarSystemObjects.SolarSystemObjects.Venus.R * 1000, (float)SolarSystemObjects.SolarSystemObjects.Venus.R * 1000);
 
-        List<float> earth_coords = SolarSystemObjects.SolarSystemObjects.Earth.calculateCoordsByDay(0, 0, 0, day);
+        List<float> earth_coords = SolarSystemObjects.SolarSystemObjects.Mercury.calculateCoordsByDay(0, 0, 0, day);
         earth.position = new Vector3(earth_coords[0], earth_coords[1], earth_coords[2]);
 
         List<float> moon_coords = SolarSystemObjects.SolarSystemObjects.Moon.calculateCoordsByDay(earth_coords[0], earth_coords[1], earth_coords[2], day);
@@ -44,7 +44,7 @@ public class Main : MonoBehaviour
 
     void Update()
     {
-        List<float> earth_coords = SolarSystemObjects.SolarSystemObjects.Earth.calculateCoordsByDay(0, 0, 0, day);
+        List<float> earth_coords = SolarSystemObjects.SolarSystemObjects.Mercury.calculateCoordsByDay(0, 0, 0, day);
         earth.position = new Vector3(earth_coords[0], earth_coords[1], earth_coords[2]);
 
         List<float> venus_coords = SolarSystemObjects.SolarSystemObjects.Venus.calculateCoordsByDay(0, 0, 0, day);
@@ -52,6 +52,8 @@ public class Main : MonoBehaviour
 
         List<float> moon_coords = SolarSystemObjects.SolarSystemObjects.Moon.calculateCoordsByDay(earth_coords[0], earth_coords[1], earth_coords[2], day);
         moon.position = new Vector3(moon_coords[0], moon_coords[1], moon_coords[2]);
+
+        UnityEngine.Debug.Log($"day {day} {earth_coords[1]}; {venus_coords[1]}");
 
         day++;
     }
