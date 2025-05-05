@@ -1,43 +1,74 @@
 using System;
 using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 using static GlobalVariables;
 
 namespace SolarSystemObjects
 {
-    public class SolarSystemObject
+    public class BodyPosition
     {
-        //public double start_x { get; set; } // Начальные координаты объекта по оси x
-        //public double start_y { get; set; } // Начальные координаты объекта по оси y
-        //public double start_z { get; set; } // Начальные координаты объекта по оси z
+        public float x { get; set; }
+        public float y { get; set; }
+        public float z { get; set; }
+    }
 
-        //public double current_x { get; set; } // Текущие координаты объекта по оси x
-        //public double current_y { get; set; } // Текущие координаты объекта по оси y
-        //public double current_z { get; set; } // Текущие координаты объекта по оси z
+    public class SolarSystemObject: IEnumerator<BodyPosition>
+    {
+        // День/Позиция для итератора
+        private int day = 0;
+
+        // Количество оборотов совершённых за всё время
+        private ulong revolutions_count = 0;
+
+        public bool MoveNext()
+        {
+            day++;
+            if (this.day > this.T)
+            {
+                this.day = 0;
+                this.revolutions_count++;
+            }
+            return true;
+        }
+
+        public BodyPosition Current => calculateCoordsByDay();
+
+        object IEnumerator.Current => this.Current;
+
+        public void Dispose() { }
+
+        public void Reset()
+        {
+            day = -1;
+        }
+
+        // Центральное тело
+        public SolarSystemObject central_body = null;
 
         // Эксцентриситет объекта
-        public double e { get; set; } = 0;
+        public double e = 0;
 
         // Период обращения
-        public double T { get; set; }
+        public double T;
 
         // Большая полуось
-        public double a { get; set; }
+        public double a;
 
         // Наклон орбиты
-        public double i { get; set; }
+        public double i;
 
         // Радиус объекта
-        public double R { get; set; }
+        public double R;
 
         // Начальное значение аргумента перицентра
-        public double periapsis_argument_0 { get; set; }
+        public double periapsis_argument_0;
 
         // Начальное значение средней аномалии
-        public double average_anomaly_0 { get; set; }
+        public double average_anomaly_0;
 
         // Значение узла восходящего узла
-        public double ascending_node_longitude { get; set; }
+        public double ascending_node_longitude;
 
         // Значение изменения аргумента перицентра
         public double changing_periapsis_argument => 24 * Math.Pow(Math.PI, 3) / Math.Pow(this.T, 2) / Math.Pow(GlobalVariables.light_speed_ae_day, 2) / (1 - Math.Pow(this.e, 2));
@@ -72,44 +103,42 @@ namespace SolarSystemObjects
             return this.a * (1 - this.e * Math.Cos(eccentric_anomaly));
         }
 
+        // Расчёта истинной аномалии
         public double true_anomaly(double eccentric_anomaly)
         {
             return 2 * Math.Atan(Math.Sqrt((1 + this.e) / (1 - this.e)) * Math.Tan(eccentric_anomaly / 2));
         }
 
-        // middle точки это точка, вокруг которой происходит вращение
-        public List<float> calculateCoordsByDay(double middle_x, double middle_y, double middle_z, ulong past_days) // Расчёт Координат объекта в определённый день
+        // Расчёт Координат объекта за текущий день
+        public BodyPosition calculateCoordsByDay() 
         {
-            int days = (int)(past_days % this.T);
-            double eccentric_anomaly = this.eccentric_anomaly(days);
-
+            double eccentric_anomaly = this.eccentric_anomaly(this.day);
             double true_anomaly = this.true_anomaly(eccentric_anomaly);
-            // TODO Сделать
-            int n = 0;
-            double periapsis_argument = this.periapsis_argument_0 + this.changing_periapsis_argument * n;
+            double periapsis_argument = this.periapsis_argument_0 + this.changing_periapsis_argument * this.revolutions_count;
             double radius = this.r(eccentric_anomaly);
-
             double angle_sum = true_anomaly + periapsis_argument;
+            BodyPosition central_body_position = new BodyPosition
+            {
+                x = 0,
+                y = 0,
+                z = 0,
+            };
 
-            double x = middle_x + radius * (Math.Cos(angle_sum) * Math.Cos(this.ascending_node_longitude) - Math.Sin(angle_sum) * Math.Sin(this.ascending_node_longitude) * Math.Cos(this.i));
-            double y = middle_y + radius * (Math.Cos(angle_sum) * Math.Sin(this.ascending_node_longitude) + Math.Sin(angle_sum) * Math.Cos(this.ascending_node_longitude) * Math.Cos(this.i));
-            double z = middle_z + radius * Math.Sin(angle_sum) * Math.Sin(this.i);
+            if (this.central_body != null) central_body_position = this.central_body.Current;
 
-            return new List<float>() { (float)x, (float)y, (float)z };
-            //int days = (int)(past_days % this.T);
-            //double omega = 2 * Math.PI / this.T;
-            //double teta = omega * days;
-            //double x = middle_x + this.a * Math.Cos(teta);
-            //double z = middle_z + this.a * Math.Sin(teta);
-            //double y = middle_y;
+            double x = central_body_position.x + radius * (Math.Cos(angle_sum) * Math.Cos(this.ascending_node_longitude) - Math.Sin(angle_sum) * Math.Sin(this.ascending_node_longitude) * Math.Cos(this.i));
+            double y = central_body_position.y + radius * (Math.Cos(angle_sum) * Math.Sin(this.ascending_node_longitude) + Math.Sin(angle_sum) * Math.Cos(this.ascending_node_longitude) * Math.Cos(this.i));
+            double z = central_body_position.z + radius * Math.Sin(angle_sum) * Math.Sin(this.i);
 
-            //double angle = this.i * 0.0174533;
-
-            //double rot_x = x * Math.Cos(angle) - y * Math.Sin(angle);
-            //double rot_y = x * Math.Sin(angle) + y * Math.Cos(angle);
-            //double rot_z = z;
-
-            //return new List<float>() { (float)rot_x, (float)rot_y, (float)rot_z };
+            return new BodyPosition
+            {
+                x = (float)x,
+                y = (float)y,
+                z = (float)z
+            };
         }
+
+
+
     }
 }
