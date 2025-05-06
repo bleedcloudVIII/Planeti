@@ -6,25 +6,27 @@ using static GlobalVariables;
 
 namespace SolarSystemObjects
 {
-    public class BodyPosition
+    public class BodyCoords
     {
         public float x { get; set; }
         public float y { get; set; }
         public float z { get; set; }
     }
 
-    public class SolarSystemObject: IEnumerator<BodyPosition>
+    public class BodyCoordsIterator: IEnumerator<BodyCoords>
     {
+        public SolarSystemObject body;
+
         // День/Позиция для итератора
-        private int day = 0;
+        public int day = 0;
 
         // Количество оборотов совершённых за всё время
-        private ulong revolutions_count = 0;
+        public ulong revolutions_count = 0;
 
         public bool MoveNext()
         {
             day++;
-            if (this.day > this.T)
+            if (this.day > this.body.T)
             {
                 this.day = 0;
                 this.revolutions_count++;
@@ -32,7 +34,7 @@ namespace SolarSystemObjects
             return true;
         }
 
-        public BodyPosition Current => calculateCoordsByDay();
+        public BodyCoords Current => this.body.calculateCoordsByDay(this.day, this.revolutions_count);
 
         object IEnumerator.Current => this.Current;
 
@@ -42,9 +44,15 @@ namespace SolarSystemObjects
         {
             day = -1;
         }
+    }
 
+    public class SolarSystemObject
+    {
         // Центральное тело
         public SolarSystemObject central_body = null;
+
+        // Итератор координат центрального тела
+        public BodyCoordsIterator central_body_coords_iterator = null;
 
         // Эксцентриситет объекта
         public double e = 0;
@@ -110,27 +118,27 @@ namespace SolarSystemObjects
         }
 
         // Расчёт Координат объекта за текущий день
-        public BodyPosition calculateCoordsByDay() 
+        public BodyCoords calculateCoordsByDay(int day, ulong revolutions_count)
         {
-            double eccentric_anomaly = this.eccentric_anomaly(this.day);
+            double eccentric_anomaly = this.eccentric_anomaly(day);
             double true_anomaly = this.true_anomaly(eccentric_anomaly);
-            double periapsis_argument = this.periapsis_argument_0 + this.changing_periapsis_argument * this.revolutions_count;
+            double periapsis_argument = this.periapsis_argument_0 + this.changing_periapsis_argument * revolutions_count;
             double radius = this.r(eccentric_anomaly);
             double angle_sum = true_anomaly + periapsis_argument;
-            BodyPosition central_body_position = new BodyPosition
+            BodyCoords central_body_position = new BodyCoords
             {
                 x = 0,
                 y = 0,
                 z = 0,
             };
 
-            if (this.central_body != null) central_body_position = this.central_body.Current;
+            if (this.central_body != null) central_body_position = this.central_body_coords_iterator.Current;
 
             double x = central_body_position.x + radius * (Math.Cos(angle_sum) * Math.Cos(this.ascending_node_longitude) - Math.Sin(angle_sum) * Math.Sin(this.ascending_node_longitude) * Math.Cos(this.i));
             double y = central_body_position.y + radius * (Math.Cos(angle_sum) * Math.Sin(this.ascending_node_longitude) + Math.Sin(angle_sum) * Math.Cos(this.ascending_node_longitude) * Math.Cos(this.i));
             double z = central_body_position.z + radius * Math.Sin(angle_sum) * Math.Sin(this.i);
 
-            return new BodyPosition
+            return new BodyCoords
             {
                 x = (float)x,
                 y = (float)y,

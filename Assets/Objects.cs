@@ -16,12 +16,16 @@ namespace SolarSystemObjects
 
         public static SolarSystemObject Mercury = new SolarSystemObject()
         {
-            e = 0.205631752,
+            //e = 0.205631752,
+            e = 0.7,
             T = 87.96843362,
             a = 0.38709830982,
             i = 7.0049863889,
             R = 0.000016043,
-        };
+            periapsis_argument_0 = 0,
+            average_anomaly_0 = 2.8162920670,
+            ascending_node_longitude = 0.83775804095,
+    };
 
         public static SolarSystemObject Venus = new SolarSystemObject()
         {
@@ -39,6 +43,9 @@ namespace SolarSystemObjects
             a = 1.00000101778,
             i = 0.0,
             R = 0.0000427814,
+            periapsis_argument_0 = 0,
+            average_anomaly_0 = 2.8162920670,
+            ascending_node_longitude = 0.83775804095,
         };
 
         public static SolarSystemObject Mars = new SolarSystemObject()
