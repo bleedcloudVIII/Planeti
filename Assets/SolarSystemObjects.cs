@@ -84,6 +84,9 @@ namespace SolarSystemObjects
         // Значение среднего движения
         public double average_movement => 2 * Math.PI / this.T;
 
+        // Количество оборотов, которые будут совершены с начала образования планеты до нашего времени
+        public ulong N;
+
         // Расчёт эксцентрической аномалии
         public double eccentric_anomaly(int day)
         {
@@ -122,7 +125,7 @@ namespace SolarSystemObjects
         {
             double eccentric_anomaly = this.eccentric_anomaly(day);
             double true_anomaly = this.true_anomaly(eccentric_anomaly);
-            double periapsis_argument = this.periapsis_argument_0 + this.changing_periapsis_argument * revolutions_count;
+            double periapsis_argument = this.periapsis_argument_0 - this.changing_periapsis_argument * (this.N -  revolutions_count);
             double radius = this.r(eccentric_anomaly);
             double angle_sum = true_anomaly + periapsis_argument;
             BodyCoords central_body_position = new BodyCoords

@@ -21,7 +21,7 @@ public class Main : MonoBehaviour
 
     void Start()
     {
-        this.earth_coords_iterator = new SolarSystemObjects.BodyCoordsIterator { body = SolarSystemObjects.SolarSystemObjects.Mercury };
+        this.earth_coords_iterator = new SolarSystemObjects.BodyCoordsIterator { body = SolarSystemObjects.SolarSystemObjects.Earth };
 
         
         //SolarSystemObjects.SolarSystemObjects.Venus.T = 5000;
