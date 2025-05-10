@@ -1,8 +1,8 @@
 using UnityEngine;
-using SolarSystemObjects;
+using SolarSystem;
 using System.Runtime.CompilerServices;
 
-namespace SolarSystemObjects
+namespace SolarSystem
 {
     public class SolarSystemObjects
     {

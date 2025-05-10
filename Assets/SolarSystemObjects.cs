@@ -4,7 +4,7 @@ using System.Collections;
 using UnityEngine;
 using static GlobalVariables;
 
-namespace SolarSystemObjects
+namespace SolarSystem
 {
     public class BodyCoords
     {

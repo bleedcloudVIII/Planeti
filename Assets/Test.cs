@@ -1,6 +1,6 @@
 using System.Diagnostics;
 using UnityEngine;
-using SolarSystemObjects;
+using SolarSystem;
 using System.Collections.Generic;
 using System.Globalization;
 
