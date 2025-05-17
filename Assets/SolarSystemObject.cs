@@ -67,7 +67,7 @@ namespace SolarSystem
         public double i;
 
         // Коэффициент увеличения для радиуса
-        public double r_coeef = 1;
+        public double r_coeff = 1;
 
         // Радиус объекта без увеличения
         public double real_r;
