@@ -62,10 +62,11 @@ public class Main : MonoBehaviour
     void Update()
     {
         this.updateEvents();
+
         SolarSystem.BodyCoords coords = this.earth_coords_iterator.Current;
-        UnityEngine.Debug.Log($"({coords.x}; {coords.y}; {coords.z}), day={this.earth_coords_iterator.day} oboroti={this.earth_coords_iterator.revolutions_count}");
         this.earth_coords_iterator.MoveNext();
 
+        UnityEngine.Debug.Log($"({coords.x}; {coords.y}; {coords.z}), day={this.earth_coords_iterator.day} oboroti={this.earth_coords_iterator.revolutions_count}");
         //List<float> earth_coords = SolarSystemObjects.SolarSystemObjects.Mercury.calculateCoordsByDay(0, 0, 0, day);
         earth.position = new Vector3(coords.x, coords.z, coords.y);
 
