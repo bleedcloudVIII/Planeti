@@ -73,7 +73,7 @@ namespace SolarSystem
         public double real_r;
 
         // Радиус объекта с увеличением
-        public double R => this.r_coeef * this.real_r;
+        public double R => this.r_coeff * this.real_r;
 
         // Начальное значение аргумента перицентра
         public double periapsis_argument_0;
@@ -81,7 +81,7 @@ namespace SolarSystem
         // Начальное значение средней аномалии
         public double average_anomaly_0;
 
-        // Значение узла восходящего узла
+        // Значение долготы восходящего узла
         public double ascending_node_longitude;
 
         // Значение изменения аргумента перицентра
@@ -103,7 +103,6 @@ namespace SolarSystem
                 return E - (E - this.e * Math.Sin(E) - average_anomaly) / (1 - this.e * Math.Cos(E));
             };
 
-            // TODO ограничение на кол-во операций
             double E_0;
             double E_1 = average_anomaly;
             do
@@ -143,8 +142,14 @@ namespace SolarSystem
 
             if (this.central_body != null) central_body_position = this.central_body_coords_iterator.Current;
 
-            double x = central_body_position.x + radius * (Math.Cos(angle_sum) * Math.Cos(this.ascending_node_longitude) - Math.Sin(angle_sum) * Math.Sin(this.ascending_node_longitude) * Math.Cos(this.i));
-            double y = central_body_position.y + radius * (Math.Cos(angle_sum) * Math.Sin(this.ascending_node_longitude) + Math.Sin(angle_sum) * Math.Cos(this.ascending_node_longitude) * Math.Cos(this.i));
+            double mult_sin_asdending_node_i_angle_sum = Math.Sin(angle_sum) * Math.Sin(this.ascending_node_longitude) * Math.Cos(this.i);
+            double mult_cos_asdending_node_i_angle_sum = Math.Sin(angle_sum) * Math.Cos(this.ascending_node_longitude) * Math.Cos(this.i);
+
+            double mult_angle_sum_cos_ascending_node = Math.Cos(angle_sum) * Math.Cos(this.ascending_node_longitude);
+            double mult_angle_sum_sin_ascending_node = Math.Cos(angle_sum) * Math.Sin(this.ascending_node_longitude);
+
+            double x = central_body_position.x + radius * (mult_angle_sum_cos_ascending_node - mult_sin_asdending_node_i_angle_sum);
+            double y = central_body_position.y + radius * (mult_angle_sum_sin_ascending_node + mult_cos_asdending_node_i_angle_sum);
             double z = central_body_position.z + radius * Math.Sin(angle_sum) * Math.Sin(this.i);
 
             return new BodyCoords

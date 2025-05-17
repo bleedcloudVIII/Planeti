@@ -17,17 +17,21 @@ public class Main : MonoBehaviour
     public Vector3 moonPosition = new Vector3(0, 0, 0);
     public Vector3 venusPosition = new Vector3(0, 0, 0);
 
-    // Очередь событий
-    private Queue<SolarSystem.AppEvent> appEventsQueue = new Queue<SolarSystem.AppEvent>();
+    
 
     private ulong days = 0;
 
     SolarSystem.BodyCoordsIterator earth_coords_iterator;
 
+    // Список событий
+    List<SolarSystem.AppEvent> appEvents = new List<SolarSystem.AppEvent>();
+
+
+    // Очередь событий
+    private Queue<SolarSystem.AppEvent> appEventsQueue = new Queue<SolarSystem.AppEvent>();
+
     private void updateEvents()
     {
-        List<SolarSystem.AppEvent> appEvents = new List<SolarSystem.AppEvent>();
-
         foreach (SolarSystem.AppEvent appEvent in appEvents)
         {
             if (appEvent.day == this.days) this.appEventsQueue.Enqueue(appEvent);
