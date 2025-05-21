@@ -6,13 +6,13 @@ using System.Reflection;
 
 public class Main : MonoBehaviour
 {
-    // Ссылки на объекты Земли и Луны
-    public Transform earth;  // Земля
-    public Transform moon;   // Луна
-    public Transform venus;   // Луна
+    // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ
+    public Transform earth;  // пїЅпїЅпїЅпїЅпїЅ
+    public Transform moon;   // пїЅпїЅпїЅпїЅ
+    public Transform venus;   // пїЅпїЅпїЅпїЅ
 
 
-    // Начальные позиции Земли и Луны
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ
     public Vector3 earthPosition = new Vector3(0, 0, 0);
     public Vector3 moonPosition = new Vector3(0, 0, 0);
     public Vector3 venusPosition = new Vector3(0, 0, 0);
@@ -23,11 +23,11 @@ public class Main : MonoBehaviour
 
     SolarSystem.BodyCoordsIterator earth_coords_iterator;
 
-    // Список событий
+    // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     List<SolarSystem.AppEvent> appEvents = new List<SolarSystem.AppEvent>();
 
 
-    // Очередь событий
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     private Queue<SolarSystem.AppEvent> appEventsQueue = new Queue<SolarSystem.AppEvent>();
 
     private void updateEvents()
@@ -48,7 +48,7 @@ public class Main : MonoBehaviour
 
 
         //moon.localScale = new Vector3((float)SolarSystemObjects.SolarSystemObjects.Moon.R * 1000, (float)SolarSystemObjects.SolarSystemObjects.Moon.R * 1000, (float)SolarSystemObjects.SolarSystemObjects.Moon.R * 1000);
-        //earth.localScale = new Vector3((float)SolarSystem.SolarSystemObjects.Earth.R, (float)SolarSystem.SolarSystemObjects.Earth.R, (float)SolarSystem.SolarSystemObjects.Earth.R);
+        earth.localScale = new Vector3((float)SolarSystem.SolarSystemObjects.Earth.R, (float)SolarSystem.SolarSystemObjects.Earth.R, (float)SolarSystem.SolarSystemObjects.Earth.R);
         //venus.localScale = new Vector3((float)SolarSystemObjects.SolarSystemObjects.Venus.R * 1000, (float)SolarSystemObjects.SolarSystemObjects.Venus.R * 1000, (float)SolarSystemObjects.SolarSystemObjects.Venus.R * 1000);
 
         //List<float> earth_coords = SolarSystemObjects.SolarSystemObjects.Mercury.calculateCoordsByDay(0, 0, 0, day);
@@ -70,7 +70,7 @@ public class Main : MonoBehaviour
         SolarSystem.BodyCoords coords = this.earth_coords_iterator.Current;
         this.earth_coords_iterator.MoveNext();
 
-        UnityEngine.Debug.Log($"({coords.x}; {coords.y}; {coords.z}), day={this.earth_coords_iterator.day} oboroti={this.earth_coords_iterator.revolutions_count}");
+        UnityEngine.Debug.Log($"({coords.x}; {coords.y}; {coords.z}), day={this.earth_coords_iterator.day} oboroti={this.earth_coords_iterator.revolutions_count}, {SolarSystem.SolarSystemObjects.Earth.R}");
         //List<float> earth_coords = SolarSystemObjects.SolarSystemObjects.Mercury.calculateCoordsByDay(0, 0, 0, day);
         earth.position = new Vector3(coords.x, coords.z, coords.y);
 

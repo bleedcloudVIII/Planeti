@@ -6,7 +6,7 @@ namespace SolarSystem
 {
     public class SolarSystemObjects
     {
-        // Данные на 2025-05-07 - 2025-05-08
+        // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ 2025-05-07 - 2025-05-08
         public static ulong D = 4600000000;
 
         public static SolarSystemObject Mercury = new SolarSystemObject()
@@ -46,7 +46,7 @@ namespace SolarSystem
             T = 365.24218985,
             a = 1.00000101778,
             i = 0.0,
-            r_coeff = 1000,
+            r_coeff = 5000,
             real_r = 0.0000427814,
             periapsis_argument_0 = 266.9953325646608,
             average_anomaly_0 = 124.7635239251798,
@@ -151,7 +151,7 @@ namespace SolarSystem
             real_r = 0.0046547454,
         };
 
-        // Спутник Земли
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
         public static SolarSystemObject Moon = new SolarSystemObject()
         {
             e = 0.055,
@@ -168,7 +168,7 @@ namespace SolarSystem
         };
 
 
-        // Спутники Марса
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
         public static SolarSystemObject Phobos = new SolarSystemObject()
         {
             e = 0.0151,
@@ -193,7 +193,7 @@ namespace SolarSystem
             ascending_node_longitude = 26.07390494553084,
         };
 
-        // Спутники Юпитера (самые крупные/основные)
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ/пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
         public static SolarSystemObject Io = new SolarSystemObject()
         {
             e = 0.055,
@@ -242,7 +242,7 @@ namespace SolarSystem
             ascending_node_longitude = 94.29306999365069,
         };
 
-        // Спутники Сатурна (самые крупные/основные)
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ/пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
         public static SolarSystemObject Titan = new SolarSystemObject()
         {
             e = 0.055,
@@ -267,7 +267,7 @@ namespace SolarSystem
             ascending_node_longitude = 163.6574754529475,
         };
 
-        // Спутники Урана (самые крупные/основные)
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ/пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
         public static SolarSystemObject Titania = new SolarSystemObject()
         {
             e = 0.055,
@@ -328,7 +328,7 @@ namespace SolarSystem
             ascending_node_longitude = 57.02647500983746,
         };
 
-        // Спутники Нептуна (самые крупные/основные)
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ/пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
         public static SolarSystemObject Triron = new SolarSystemObject()
         {
             e = 0.055,
