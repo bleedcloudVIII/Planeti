@@ -316,6 +316,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 233700258}
     m_Modifications:
+    - target: {fileID: 2713693698437767529, guid: 3ef4e26c161318242ab05eb3ff03b7e3, type: 3}
+      propertyPath: m_MaxParticleSize
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3846944215046808268, guid: 3ef4e26c161318242ab05eb3ff03b7e3, type: 3}
       propertyPath: m_Name
       value: Ef_Bg_Mist_crazy
@@ -365,8 +369,20 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8525051639604780489, guid: 3ef4e26c161318242ab05eb3ff03b7e3, type: 3}
+      propertyPath: NoiseModule.frequency
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8525051639604780489, guid: 3ef4e26c161318242ab05eb3ff03b7e3, type: 3}
+      propertyPath: RotationModule.curve.scalar
+      value: 0.008726646
+      objectReference: {fileID: 0}
+    - target: {fileID: 8525051639604780489, guid: 3ef4e26c161318242ab05eb3ff03b7e3, type: 3}
       propertyPath: ShapeModule.radiusThickness
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8525051639604780489, guid: 3ef4e26c161318242ab05eb3ff03b7e3, type: 3}
+      propertyPath: InitialModule.maxNumParticles
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 8609802475652800998, guid: 3ef4e26c161318242ab05eb3ff03b7e3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -429,7 +445,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &233700257
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1482,7 +1498,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -322.98438, y: 0}
+  m_AnchoredPosition: {x: -322.9843, y: 0}
   m_SizeDelta: {x: -645.972, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1527693393
@@ -1614,6 +1630,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1708399313684614, guid: ec1861462fc1b46f1a1c1c3c0f1f7f15, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1938299927493944, guid: ec1861462fc1b46f1a1c1c3c0f1f7f15, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4538169596089768, guid: ec1861462fc1b46f1a1c1c3c0f1f7f15, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -1669,6 +1693,14 @@ PrefabInstance:
     - target: {fileID: 4538169596089768, guid: ec1861462fc1b46f1a1c1c3c0f1f7f15, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198053673091748918, guid: ec1861462fc1b46f1a1c1c3c0f1f7f15, type: 3}
+      propertyPath: InitialModule.maxNumParticles
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 198192419590772032, guid: ec1861462fc1b46f1a1c1c3c0f1f7f15, type: 3}
+      propertyPath: InitialModule.maxNumParticles
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

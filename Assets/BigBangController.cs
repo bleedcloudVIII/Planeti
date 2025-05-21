@@ -19,7 +19,7 @@ public class BigBangController : MonoBehaviour
     private float _startTime;
     private enum State { Scaling, Fading, Idle }
     private State _currentState = State.Idle;
-    public Material newSkyboxMaterial; // Assign the new skybox material in the inspector
+    public Material newSkyboxMaterial; 
 
     public void ChangeSkybox()
     {
@@ -32,12 +32,6 @@ public class BigBangController : MonoBehaviour
 
     public void StartScaleAndFade()
     {
-        if (particle.transform == null)
-        {
-            Debug.LogError("Transform у Particle System не найден!");
-            enabled = false;
-            return;
-        }
 
         _initialScale = particle.transform.localScale; 
         _targetScale = _initialScale * endScaleMultiplier;   
@@ -49,7 +43,6 @@ public class BigBangController : MonoBehaviour
 
     IEnumerator ScaleAndFadeCoroutine()
     {
-        // Phase 1: Scaling
         _currentState = State.Scaling;
         while (_currentState == State.Scaling)
         {
@@ -67,7 +60,6 @@ public class BigBangController : MonoBehaviour
             yield return null;
         }
 
-        // Phase 2: Fading
         while (_currentState == State.Fading)
         {
             float elapsedTime = Time.time - _startTime;

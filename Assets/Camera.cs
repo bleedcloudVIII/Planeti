@@ -39,7 +39,6 @@ public class CameraController : MonoBehaviour
             float rotX = Input.GetAxis("Mouse X") * rotationSpeed;
             float rotY = -Input.GetAxis("Mouse Y") * rotationSpeed;
 
-            // Вращаем вокруг targetPosition
             transform.RotateAround(targetPosition, Vector3.up, rotX);
             transform.RotateAround(targetPosition, transform.right, rotY);
         }

@@ -55,23 +55,11 @@ public class InfoPlanetController : MonoBehaviour
     void MoveCameraToSun()
     {
         isMoving = true;
-        // Отключаем управление камерой другим скриптом 
-        //if (mainCamera.GetComponent<CameraOrbit>())
-        //{
-        //    mainCamera.GetComponent<CameraOrbit>().enabled = false;
-        //}
     }
 
     void ReturnCamera()
     {
         isMoving = false;
-
-        //Восстанавливаем управление камерой другим скриптом 
-        //if (mainCamera.GetComponent<CameraOrbit>())
-        //{
-        //    mainCamera.GetComponent<CameraOrbit>().enabled = true;
-        //}
-
         StartCoroutine(AnimateCameraReturn());
     }
 
