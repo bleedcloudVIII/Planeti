@@ -112,7 +112,6 @@ namespace SolarSystem
                 E_0 = E_1;
                 E_1 = calc_eccentric_anomaly(E_0);
             } while (Math.Abs(E_1 - E_0) > GlobalVariables.accuracy);
-            // UnityEngine.Debug.Log($"average={average_anomaly}; day={day}; E={E_1}");
             return E_1;
         }
 
@@ -136,7 +135,9 @@ namespace SolarSystem
             double periapsis_argument = Converter.degree_to_radians(this.periapsis_argument_0) - this.changing_periapsis_argument * (this.N -  revolutions_count);
             double radius = this.r(eccentric_anomaly);
             double angle_sum = true_anomaly + periapsis_argument;
-            // UnityEngine.Debug.Log($"e={eccentric_anomaly}; true={true_anomaly}; periapsis={periapsis_argument}; radius={radius}; angle_sum={angle_sum}");
+
+            double radians_ascending_node_longitude = Converter.degree_to_radians(this.ascending_node_longitude);
+            double radians_i = Converter.degree_to_radians(this.i);
 
             BodyCoords central_body_position = new BodyCoords
             {
@@ -147,17 +148,15 @@ namespace SolarSystem
 
             if (this.central_body != null) central_body_position = this.central_body_coords_iterator.Current;
 
-            double mult_sin_asdending_node_i_angle_sum = Math.Sin(angle_sum) * Math.Sin(Converter.degree_to_radians(this.ascending_node_longitude)) * Math.Cos(Converter.degree_to_radians(this.i));
-            double mult_cos_asdending_node_i_angle_sum = Math.Sin(angle_sum) * Math.Cos(Converter.degree_to_radians(this.ascending_node_longitude)) * Math.Cos(Converter.degree_to_radians(this.i));
+            double mult_sin_asdending_node_i_angle_sum = Math.Sin(angle_sum) * Math.Sin(radians_ascending_node_longitude) * Math.Cos(radians_i);
+            double mult_cos_asdending_node_i_angle_sum = Math.Sin(angle_sum) * Math.Cos(radians_ascending_node_longitude) * Math.Cos(radians_i);
 
-            double mult_angle_sum_cos_ascending_node = Math.Cos(angle_sum) * Math.Cos(Converter.degree_to_radians(this.ascending_node_longitude));
-            double mult_angle_sum_sin_ascending_node = Math.Cos(angle_sum) * Math.Sin(Converter.degree_to_radians(this.ascending_node_longitude));
-            // UnityEngine.Debug.Log($"sin_asc={mult_sin_asdending_node_i_angle_sum}; cos_asc={mult_cos_asdending_node_i_angle_sum};");
-            // UnityEngine.Debug.Log($"anle_cos={mult_angle_sum_cos_ascending_node}; angle_sin={mult_angle_sum_sin_ascending_node};");
+            double mult_angle_sum_cos_ascending_node = Math.Cos(angle_sum) * Math.Cos(radians_ascending_node_longitude);
+            double mult_angle_sum_sin_ascending_node = Math.Cos(angle_sum) * Math.Sin(radians_ascending_node_longitude);
 
             double x = central_body_position.x + radius * (mult_angle_sum_cos_ascending_node - mult_sin_asdending_node_i_angle_sum);
             double y = central_body_position.y + radius * (mult_angle_sum_sin_ascending_node + mult_cos_asdending_node_i_angle_sum);
-            double z = central_body_position.z + radius * Math.Sin(angle_sum) * Math.Sin(Converter.degree_to_radians(this.i));
+            double z = central_body_position.z + radius * Math.Sin(angle_sum) * Math.Sin(radians_i);
             // UnityEngine.Debug.Log($"central={central_body_position.z}; r={radius}; sum={angle_sum}; sin={Math.Sin(angle_sum)}; i={Converter.degree_to_radians(this.i)}, i={this.i}; sin={Math.Sin(Converter.degree_to_radians(this.i))}");
 
             // UnityEngine.Debug.Log($"x={x}; y={y}; z={z}");
@@ -170,8 +169,5 @@ namespace SolarSystem
                 z = (float)z
             };
         }
-
-
-
     }
 }
