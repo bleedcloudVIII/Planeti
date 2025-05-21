@@ -48,7 +48,7 @@ public class Main : MonoBehaviour
 
 
         //moon.localScale = new Vector3((float)SolarSystemObjects.SolarSystemObjects.Moon.R * 1000, (float)SolarSystemObjects.SolarSystemObjects.Moon.R * 1000, (float)SolarSystemObjects.SolarSystemObjects.Moon.R * 1000);
-        earth.localScale = new Vector3((float)SolarSystem.SolarSystemObjects.Earth.R, (float)SolarSystem.SolarSystemObjects.Earth.R, (float)SolarSystem.SolarSystemObjects.Earth.R);
+        //earth.localScale = new Vector3((float)SolarSystem.SolarSystemObjects.Earth.R, (float)SolarSystem.SolarSystemObjects.Earth.R, (float)SolarSystem.SolarSystemObjects.Earth.R);
         //venus.localScale = new Vector3((float)SolarSystemObjects.SolarSystemObjects.Venus.R * 1000, (float)SolarSystemObjects.SolarSystemObjects.Venus.R * 1000, (float)SolarSystemObjects.SolarSystemObjects.Venus.R * 1000);
 
         //List<float> earth_coords = SolarSystemObjects.SolarSystemObjects.Mercury.calculateCoordsByDay(0, 0, 0, day);

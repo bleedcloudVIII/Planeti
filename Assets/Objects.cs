@@ -46,6 +46,7 @@ namespace SolarSystem
             T = 365.24218985,
             a = 1.00000101778,
             i = 0.0,
+            r_coeff = 1000,
             real_r = 0.0000427814,
             periapsis_argument_0 = 266.9953325646608,
             average_anomaly_0 = 124.7635239251798,

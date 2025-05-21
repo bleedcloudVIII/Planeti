@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
 using static GlobalVariables;
+using SSOShared;
+using UnityEngine;
 
 namespace SolarSystem
 {
@@ -17,10 +19,10 @@ namespace SolarSystem
     {
         public SolarSystemObject body;
 
-        // День/Позиция для итератора
+        // пїЅпїЅпїЅпїЅ/пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         public int day = 0;
 
-        // Количество оборотов совершённых за всё время
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
         public ulong revolutions_count = 0;
 
         public bool MoveNext()
@@ -48,52 +50,52 @@ namespace SolarSystem
 
     public class SolarSystemObject
     {
-        // Центральное тело
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
         public SolarSystemObject central_body = null;
 
-        // Итератор координат центрального тела
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
         public BodyCoordsIterator central_body_coords_iterator = null;
 
-        // Эксцентриситет объекта
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         public double e = 0;
 
-        // Период обращения
+        // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         public double T;
 
-        // Большая полуось
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         public double a;
 
-        // Наклон орбиты
+        // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
         public double i;
 
-        // Коэффициент увеличения для радиуса
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         public double r_coeff = 1;
 
-        // Радиус объекта без увеличения
+        // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         public double real_r;
 
-        // Радиус объекта с увеличением
+        // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         public double R => this.r_coeff * this.real_r;
 
-        // Начальное значение аргумента перицентра
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         public double periapsis_argument_0;
 
-        // Начальное значение средней аномалии
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         public double average_anomaly_0;
 
-        // Значение долготы восходящего узла
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
         public double ascending_node_longitude;
 
-        // Значение изменения аргумента перицентра
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         public double changing_periapsis_argument => 24 * Math.Pow(Math.PI, 3) / Math.Pow(this.T, 2) / Math.Pow(GlobalVariables.light_speed_ae_day, 2) / (1 - Math.Pow(this.e, 2));
 
-        // Значение среднего движения
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         public double average_movement => 2 * Math.PI / this.T;
 
-        // Количество оборотов, которые будут совершены с начала образования планеты до нашего времени
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         public ulong N;
 
-        // Расчёт эксцентрической аномалии
+        // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         public double eccentric_anomaly(int day)
         {
             double average_anomaly = this.average_anomaly_0 + this.average_movement * day;
@@ -110,29 +112,32 @@ namespace SolarSystem
                 E_0 = E_1;
                 E_1 = calc_eccentric_anomaly(E_0);
             } while (Math.Abs(E_1 - E_0) > GlobalVariables.accuracy);
+            // UnityEngine.Debug.Log($"average={average_anomaly}; day={day}; E={E_1}");
             return E_1;
         }
 
-        // Расчёта радиус-вектора
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         public double r(double eccentric_anomaly)
         {
             return this.a * (1 - this.e * Math.Cos(eccentric_anomaly));
         }
 
-        // Расчёта истинной аномалии
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         public double true_anomaly(double eccentric_anomaly)
         {
             return 2 * Math.Atan(Math.Sqrt((1 + this.e) / (1 - this.e)) * Math.Tan(eccentric_anomaly / 2));
         }
 
-        // Расчёт Координат объекта за текущий день
+        // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
         public BodyCoords calculateCoordsByDay(int day, ulong revolutions_count)
         {
             double eccentric_anomaly = this.eccentric_anomaly(day);
             double true_anomaly = this.true_anomaly(eccentric_anomaly);
-            double periapsis_argument = this.periapsis_argument_0 - this.changing_periapsis_argument * (this.N -  revolutions_count);
+            double periapsis_argument = Converter.degree_to_radians(this.periapsis_argument_0) - this.changing_periapsis_argument * (this.N -  revolutions_count);
             double radius = this.r(eccentric_anomaly);
             double angle_sum = true_anomaly + periapsis_argument;
+            // UnityEngine.Debug.Log($"e={eccentric_anomaly}; true={true_anomaly}; periapsis={periapsis_argument}; radius={radius}; angle_sum={angle_sum}");
+
             BodyCoords central_body_position = new BodyCoords
             {
                 x = 0,
@@ -142,15 +147,21 @@ namespace SolarSystem
 
             if (this.central_body != null) central_body_position = this.central_body_coords_iterator.Current;
 
-            double mult_sin_asdending_node_i_angle_sum = Math.Sin(angle_sum) * Math.Sin(this.ascending_node_longitude) * Math.Cos(this.i);
-            double mult_cos_asdending_node_i_angle_sum = Math.Sin(angle_sum) * Math.Cos(this.ascending_node_longitude) * Math.Cos(this.i);
+            double mult_sin_asdending_node_i_angle_sum = Math.Sin(angle_sum) * Math.Sin(Converter.degree_to_radians(this.ascending_node_longitude)) * Math.Cos(Converter.degree_to_radians(this.i));
+            double mult_cos_asdending_node_i_angle_sum = Math.Sin(angle_sum) * Math.Cos(Converter.degree_to_radians(this.ascending_node_longitude)) * Math.Cos(Converter.degree_to_radians(this.i));
 
-            double mult_angle_sum_cos_ascending_node = Math.Cos(angle_sum) * Math.Cos(this.ascending_node_longitude);
-            double mult_angle_sum_sin_ascending_node = Math.Cos(angle_sum) * Math.Sin(this.ascending_node_longitude);
+            double mult_angle_sum_cos_ascending_node = Math.Cos(angle_sum) * Math.Cos(Converter.degree_to_radians(this.ascending_node_longitude));
+            double mult_angle_sum_sin_ascending_node = Math.Cos(angle_sum) * Math.Sin(Converter.degree_to_radians(this.ascending_node_longitude));
+            // UnityEngine.Debug.Log($"sin_asc={mult_sin_asdending_node_i_angle_sum}; cos_asc={mult_cos_asdending_node_i_angle_sum};");
+            // UnityEngine.Debug.Log($"anle_cos={mult_angle_sum_cos_ascending_node}; angle_sin={mult_angle_sum_sin_ascending_node};");
 
             double x = central_body_position.x + radius * (mult_angle_sum_cos_ascending_node - mult_sin_asdending_node_i_angle_sum);
             double y = central_body_position.y + radius * (mult_angle_sum_sin_ascending_node + mult_cos_asdending_node_i_angle_sum);
-            double z = central_body_position.z + radius * Math.Sin(angle_sum) * Math.Sin(this.i);
+            double z = central_body_position.z + radius * Math.Sin(angle_sum) * Math.Sin(Converter.degree_to_radians(this.i));
+            // UnityEngine.Debug.Log($"central={central_body_position.z}; r={radius}; sum={angle_sum}; sin={Math.Sin(angle_sum)}; i={Converter.degree_to_radians(this.i)}, i={this.i}; sin={Math.Sin(Converter.degree_to_radians(this.i))}");
+
+            // UnityEngine.Debug.Log($"x={x}; y={y}; z={z}");
+            // UnityEngine.Debug.Log($"central. x={central_body_position.x}; y={central_body_position.y}; z={central_body_position.z}");
 
             return new BodyCoords
             {
