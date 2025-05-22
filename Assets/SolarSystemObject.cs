@@ -148,6 +148,9 @@ namespace SolarSystem
 
             if (this.central_body != null) central_body_position = this.central_body_coords_iterator.Current;
 
+            UnityEngine.Debug.Log($"{this.r_coeff} x={central_body_position.x}; y={central_body_position.y}; z={central_body_position.z}");
+
+
             double mult_sin_asdending_node_i_angle_sum = Math.Sin(angle_sum) * Math.Sin(radians_ascending_node_longitude) * Math.Cos(radians_i);
             double mult_cos_asdending_node_i_angle_sum = Math.Sin(angle_sum) * Math.Cos(radians_ascending_node_longitude) * Math.Cos(radians_i);
 
@@ -161,6 +164,7 @@ namespace SolarSystem
 
             // UnityEngine.Debug.Log($"x={x}; y={y}; z={z}");
             // UnityEngine.Debug.Log($"central. x={central_body_position.x}; y={central_body_position.y}; z={central_body_position.z}");
+            UnityEngine.Debug.Log($"{this.r_coeff} x={x}; y={y}; z={z}");
 
             return new BodyCoords
             {

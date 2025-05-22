@@ -1,6 +1,7 @@
 using UnityEngine;
 using SolarSystem;
 using System.Runtime.CompilerServices;
+using System.Collections.Generic;
 
 namespace SolarSystem
 {
@@ -15,6 +16,7 @@ namespace SolarSystem
             T = 87.96843362,
             a = 0.38709830982,
             i = 7.0049863889,
+            r_coeff = 5000,
             real_r = 0.000016043,
             periapsis_argument_0 = 29.19850252136612,
             average_anomaly_0 = 263.6698727772198,
@@ -30,6 +32,7 @@ namespace SolarSystem
             T = 224.6954354,
             a = 0.72332981996,
             i = 3.3946619444,
+            r_coeff = 5000,
             real_r = 0.0000401075,
             periapsis_argument_0 = 54.93887242128372,
             average_anomaly_0 = 123.7571797318931,
@@ -62,6 +65,7 @@ namespace SolarSystem
             T = 686.92970957,
             a = 1.52367934191,
             i = 1.8497263889,
+            r_coeff = 5000,
             real_r = 0.0000227276,
             periapsis_argument_0 = 286.6699317364874,
             average_anomaly_0 = 191.0489371642038,
@@ -77,6 +81,7 @@ namespace SolarSystem
             T = 4330.5957654,
             a = 5.20260319132,
             i = 1.3032697222,
+            r_coeff = 5000,
             real_r = 0.0004746057,
             periapsis_argument_0 = 273.5810066573079,
             average_anomaly_0 = 69.56165064241159,
@@ -92,6 +97,7 @@ namespace SolarSystem
             T = 10746.940442,
             a = 9.55490959574,
             i = 2.4888780556,
+            r_coeff = 5000,
             real_r = 0.0004010752,
             periapsis_argument_0 = 337.6583436100631,
             average_anomaly_0 = 268.7436029396669,
@@ -107,6 +113,7 @@ namespace SolarSystem
             T = 30588.740354,
             a = 19.21844606178,
             i = 0.77319611,
+            r_coeff = 5000,
             real_r = 0.00001737993,
             periapsis_argument_0 = 90.77652108111427,
             average_anomaly_0 = 257.1045473770534,
@@ -122,6 +129,7 @@ namespace SolarSystem
             T = 59799.900456,
             a = 30.11038686942,
             i = 1.7699522,
+            r_coeff = 5000,
             real_r = 0.0001671147,
             periapsis_argument_0 = 269.8974641765519,
             average_anomaly_0 = 318.9477116332534,
@@ -137,6 +145,7 @@ namespace SolarSystem
             T = 90738.995,
             a = 39.5181761979,
             i = 17.1225991666,
+            r_coeff = 5000,
             real_r = 0.0000079433,
             periapsis_argument_0 = 111.9208736397519,
             average_anomaly_0 = 53.85468246363587,
@@ -158,6 +167,7 @@ namespace SolarSystem
             T = 27.322,
             a = 0.0025695553,
             i = 5.145,
+            r_coeff = 10000,
             real_r = 0.000011613802,
             periapsis_argument_0 = 128.7082725680752,
             average_anomaly_0 = 46.06944970848827,
@@ -167,6 +177,21 @@ namespace SolarSystem
             N = (ulong)(D / 27.322)
         };
 
+        public static BodyCoordsIterator MoonCoordsIterator = new BodyCoordsIterator { body = Moon };
+
+        public static List<SolarSystemObject> SpaceBodies = new List<SolarSystemObject> { Mercury, Venus, Earth, Moon, Mars, Jupiter, Saturn, Uranus, Neptune, Pluto };
+        public static List<BodyCoordsIterator> SpaceBodiesIteratos = new List<BodyCoordsIterator> {
+            MercuryCoordsIterator,
+            VenusCoordsIterator,
+            EarthCoordsIterator,
+            MoonCoordsIterator,
+            MarsCoordsIterator,
+            JupiterCoordsIterator,
+            SaturnCoordsIterator,
+            UranusCoordsIterator,
+            NeptuneCoordsIterator,
+            PlutoCoordsIterator
+        };
 
         // �������� �����
         public static SolarSystemObject Phobos = new SolarSystemObject()
