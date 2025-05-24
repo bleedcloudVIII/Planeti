@@ -32,11 +32,8 @@ public class Main : MonoBehaviour
     SolarSystem.BodyCoordsIterator pluto_coords_iterator = SolarSystem.SolarSystemObjects.PlutoCoordsIterator;
     
 
-    // ������ �������
     List<SolarSystem.AppEvent> appEvents = new List<SolarSystem.AppEvent>();
 
-
-    // ������� �������
     private Queue<SolarSystem.AppEvent> appEventsQueue = new Queue<SolarSystem.AppEvent>();
 
     private void updateEvents()
@@ -63,25 +60,7 @@ public class Main : MonoBehaviour
 
     void Start()
     {
-
        this.setScale();
-        //SolarSystemObjects.SolarSystemObjects.Venus.T = 5000;
-        //SolarSystemObjects.SolarSystemObjects.Moon.T = 500;
-
-
-        //moon.localScale = new Vector3((float)SolarSystemObjects.SolarSystemObjects.Moon.R * 1000, (float)SolarSystemObjects.SolarSystemObjects.Moon.R * 1000, (float)SolarSystemObjects.SolarSystemObjects.Moon.R * 1000);
-        //venus.localScale = new Vector3((float)SolarSystemObjects.SolarSystemObjects.Venus.R * 1000, (float)SolarSystemObjects.SolarSystemObjects.Venus.R * 1000, (float)SolarSystemObjects.SolarSystemObjects.Venus.R * 1000);
-
-        //List<float> earth_coords = SolarSystemObjects.SolarSystemObjects.Mercury.calculateCoordsByDay(0, 0, 0, day);
-        //earth.position = new Vector3(earth_coords[0], earth_coords[1], earth_coords[2]);
-
-        //List<float> moon_coords = SolarSystemObjects.SolarSystemObjects.Moon.calculateCoordsByDay(earth_coords[0], earth_coords[1], earth_coords[2], day);
-        //moon.position = new Vector3(moon_coords[0], moon_coords[1], moon_coords[2]);
-
-        //List<float> venus_coords = SolarSystemObjects.SolarSystemObjects.Venus.calculateCoordsByDay(0, 0, 0, day);
-        //venus.position = new Vector3(venus_coords[0], venus_coords[1], venus_coords[2]);
-
-        //day++;
     }
 
     private void updatePositions()
@@ -127,28 +106,44 @@ public class Main : MonoBehaviour
         this.pluto_coords_iterator.MoveNext();
     }
 
+    public void skipTime(ulong years, ulong days)
+    {
+        double all_days = (double)(years * 365.24218985 + days);
+        foreach (SolarSystem.BodyCoordsIterator iterator in SolarSystem.SolarSystemObjects.SpaceBodiesIteratos)
+        {
+            ulong passed_revolutions_count = (ulong)(all_days / iterator.body.T);
+            int remaining_days = (int)(all_days - passed_revolutions_count * iterator.body.T);
+
+            int current_days = iterator.day;
+            int sum_of_days = current_days + remaining_days;
+            if (sum_of_days >= iterator.body.T)
+            {
+                passed_revolutions_count += (ulong)(sum_of_days / iterator.body.T);
+                remaining_days = (int)(sum_of_days % iterator.body.T);
+
+                iterator.day = remaining_days;
+                iterator.revolutions_count += passed_revolutions_count;
+            }
+            else 
+            {
+                iterator.day = sum_of_days;
+                iterator.revolutions_count += passed_revolutions_count;
+            }
+        }
+    }
+
     void Update()
     {
-        this.updateEvents();
-        this.updatePositions();
-
-        // SolarSystem.BodyCoords coords = this.earth_coords_iterator.Current;
-        // this.earth_coords_iterator.MoveNext();
-
-        // UnityEngine.Debug.Log($"({coords.x}; {coords.y}; {coords.z}), day={this.earth_coords_iterator.day} oboroti={this.earth_coords_iterator.revolutions_count}, {SolarSystem.SolarSystemObjects.Earth.R}");
-        //List<float> earth_coords = SolarSystemObjects.SolarSystemObjects.Mercury.calculateCoordsByDay(0, 0, 0, day);
-        // earth.position = new Vector3(coords.x, coords.z, coords.y);
-
+        
+        // if (this.days <= 100 || this.days > 111)
+        // {
+            this.updateEvents();
+            this.updatePositions();
+        // }
+        // else if (this.days == 111)
+        // {
+            this.skipTime(100, 180);
+        // }
         this.days++;
-
-        //List<float> venus_coords = SolarSystemObjects.SolarSystemObjects.Venus.calculateCoordsByDay(0, 0, 0, day);
-        //venus.position = new Vector3(venus_coords[0], venus_coords[1], venus_coords[2]);
-
-        //List<float> moon_coords = SolarSystemObjects.SolarSystemObjects.Moon.calculateCoordsByDay(earth_coords[0], earth_coords[1], earth_coords[2], day);
-        //moon.position = new Vector3(moon_coords[0], moon_coords[1], moon_coords[2]);
-
-        //UnityEngine.Debug.Log($"day {day} {earth_coords[1]}; {venus_coords[1]}");
-
-        //day++;
     }
 }
