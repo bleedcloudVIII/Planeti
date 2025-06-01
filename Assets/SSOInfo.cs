@@ -1,18 +1,37 @@
 using UnityEngine;
-
+using System.ComponentModel;
+using System.Reflection;
+using System;
 namespace SolarSystem
 {
     public enum SolarSystemObjectType
     {
+        [Description("Планета земной группы")]
         EARTH_GROUP_PLANET,
+        [Description("Карликовая планета")]
         DWARF_PLANET,
+        [Description("Газовый гигант")]
         GAS_GIANT,
+        [Description("Звезда")]
         STAR,
+        [Description("Спутник")]
         SPUTNIK,
+        [Description("Неизвестный тип")]
         NULL,
+        [Description("Планета")]
         PLANET
     }
+    public static class EnumExtensions
+    {
+        public static string GetDescription(this Enum value)
+        {
+            FieldInfo field = value.GetType().GetField(value.ToString());
 
+            DescriptionAttribute attribute = Attribute.GetCustomAttribute(field, typeof(DescriptionAttribute)) as DescriptionAttribute;
+
+            return attribute == null ? value.ToString() : attribute.Description;
+        }
+    }
     public class SolarSystemObjectInfo
     {
         public SolarSystemObject body;

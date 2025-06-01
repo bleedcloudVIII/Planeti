@@ -30,10 +30,9 @@ public class Main : MonoBehaviour
     SolarSystem.BodyCoordsIterator uranus_coords_iterator = SolarSystem.SolarSystemObjects.UranusCoordsIterator;
     SolarSystem.BodyCoordsIterator neptune_coords_iterator = SolarSystem.SolarSystemObjects.NeptuneCoordsIterator;
     SolarSystem.BodyCoordsIterator pluto_coords_iterator = SolarSystem.SolarSystemObjects.PlutoCoordsIterator;
-    
 
     List<SolarSystem.AppEvent> appEvents = SolarSystem.appEvents.events_list;
-
+    public bool isPaused = false;
     private Queue<SolarSystem.AppEvent> appEventsQueue = new Queue<SolarSystem.AppEvent>();
 
     private void updateEvents()
@@ -137,21 +136,15 @@ public class Main : MonoBehaviour
 
     void Update()
     {
-        // this.mars_coords_iterator.day = 127;
-        // if (this.days <= 100 /*|| this.days > 111*/)
+        if (isPaused) return;
+        // if (this.days <= 100 || this.days > 111)
         // {
-        if (this.days == 0) this.skipTime(94998, 0);
-        Debug.Log($"День {this.days}. Кол-во событий в очереди: {this.appEventsQueue.Count}");
         this.updateEvents();
-        this.updatePositions();
-        //Debug.Log($"Кординаты день {this.days}:({this.mars_coords_iterator.Current.x};{this.mars_coords_iterator.Current.y};{this.mars_coords_iterator.Current.z})");
-            
+            this.updatePositions();
         // }
         // else if (this.days == 111)
         // {
-        //     this.skipTime(100, 180);
-        //     Debug.Log($"После пропуска. Кординаты:({this.earth_coords_iterator.Current.x};{this.earth_coords_iterator.Current.y};{this.earth_coords_iterator.Current.z})");
-        //     Debug.Log($"После пропуска. День итератора: {this.earth_coords_iterator.day}; Количество совершённых оборотов:{this.earth_coords_iterator.revolutions_count}");
+            //this.skipTime(100, 180);
         // }
         this.days++;
     }
