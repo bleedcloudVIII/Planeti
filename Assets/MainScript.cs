@@ -30,8 +30,8 @@ public class Main : MonoBehaviour
     SolarSystem.BodyCoordsIterator uranus_coords_iterator = SolarSystem.SolarSystemObjects.UranusCoordsIterator;
     SolarSystem.BodyCoordsIterator neptune_coords_iterator = SolarSystem.SolarSystemObjects.NeptuneCoordsIterator;
     SolarSystem.BodyCoordsIterator pluto_coords_iterator = SolarSystem.SolarSystemObjects.PlutoCoordsIterator;
-    
 
+    public bool isPaused = false;
     List<SolarSystem.AppEvent> appEvents = new List<SolarSystem.AppEvent>();
 
     private Queue<SolarSystem.AppEvent> appEventsQueue = new Queue<SolarSystem.AppEvent>();
@@ -134,15 +134,15 @@ public class Main : MonoBehaviour
 
     void Update()
     {
-        
+        if (isPaused) return;
         // if (this.days <= 100 || this.days > 111)
         // {
-            this.updateEvents();
+        this.updateEvents();
             this.updatePositions();
         // }
         // else if (this.days == 111)
         // {
-            this.skipTime(100, 180);
+            //this.skipTime(100, 180);
         // }
         this.days++;
     }
