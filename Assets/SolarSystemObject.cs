@@ -18,11 +18,7 @@ namespace SolarSystem
     public class BodyCoordsIterator: IEnumerator<BodyCoords>
     {
         public SolarSystemObject body;
-
-        // ����/������� ��� ���������
         public int day = 0;
-
-        // ���������� �������� ����������� �� �� �����
         public ulong revolutions_count = 0;
 
         public bool MoveNext()
@@ -50,55 +46,27 @@ namespace SolarSystem
 
     public class SolarSystemObject
     {
-        // ����������� ����
         public SolarSystemObject central_body = null;
-
-        // �������� ��������� ������������ ����
         public BodyCoordsIterator central_body_coords_iterator = null;
-
-        // �������������� �������
         public double e = 0;
-
-        // ������ ���������
         public double T;
-
-        // ������� �������
         public double a;
-
-        // ������ ������
         public double i;
-
-        // ����������� ���������� ��� �������
         public double r_coeff = 1;
-
-        // ������ ������� ��� ����������
         public double real_r;
-
-        // ������ ������� � �����������
         public double R => this.r_coeff * this.real_r;
-
-        // ��������� �������� ��������� ����������
         public double periapsis_argument_0;
-
-        // ��������� �������� ������� ��������
         public double average_anomaly_0;
-
-        // �������� ������� ����������� ����
         public double ascending_node_longitude;
 
-        // �������� ��������� ��������� ����������
+
         public double changing_periapsis_argument => 24 * Math.Pow(Math.PI, 3) / Math.Pow(this.T, 2) / Math.Pow(GlobalVariables.light_speed_ae_day, 2) / (1 - Math.Pow(this.e, 2));
-
-        // �������� �������� ��������
         public double average_movement => 2 * Math.PI / this.T;
-
-        // ���������� ��������, ������� ����� ��������� � ������ ����������� ������� �� ������ �������
         public ulong N;
 
-        // ������ ��������������� ��������
         public double eccentric_anomaly(int day)
         {
-            double average_anomaly = this.average_anomaly_0 + this.average_movement * day;
+            double average_anomaly = Converter.degree_to_radians(this.average_anomaly_0) + this.average_movement * day;
 
             double calc_eccentric_anomaly(double E)
             {
@@ -111,34 +79,27 @@ namespace SolarSystem
             {
                 E_0 = E_1;
                 E_1 = calc_eccentric_anomaly(E_0);
-                // if (this.r_coeff == 10000) {
-                    // UnityEngine.Debug.Log($"!!!!{this.r_coeff} {E_1}; {E_0}; {average_anomaly}");
-                // }
             } while (Math.Abs(E_1 - E_0) > GlobalVariables.accuracy);
             return E_1;
         }
 
-        // ������� ������-�������
         public double r(double eccentric_anomaly)
         {
             return this.a * (1 - this.e * Math.Cos(eccentric_anomaly));
         }
 
-        // ������� �������� ��������
         public double true_anomaly(double eccentric_anomaly)
         {
             return 2 * Math.Atan(Math.Sqrt((1 + this.e) / (1 - this.e)) * Math.Tan(eccentric_anomaly / 2));
         }
 
-        // ������ ��������� ������� �� ������� ����
         public BodyCoords calculateCoordsByDay(int day, ulong revolutions_count)
         {
             double eccentric_anomaly = this.eccentric_anomaly(day);
             double true_anomaly = this.true_anomaly(eccentric_anomaly);
-            double periapsis_argument = Converter.degree_to_radians(this.periapsis_argument_0) - this.changing_periapsis_argument * (this.N -  revolutions_count);
+            double persiapsis_changing = this.changing_periapsis_argument * 0;
+            double periapsis_argument = Converter.degree_to_radians(this.periapsis_argument_0) - persiapsis_changing;
             double radius = this.r(eccentric_anomaly);
-            // UnityEngine.Debug.Log($"!!!!{this.r_coeff} {eccentric_anomaly}; {this.a}; {this.e}");
-
             double angle_sum = true_anomaly + periapsis_argument;
 
             double radians_ascending_node_longitude = Converter.degree_to_radians(this.ascending_node_longitude);
@@ -153,8 +114,6 @@ namespace SolarSystem
 
             if (this.central_body != null) central_body_position = this.central_body_coords_iterator.Current;
 
-            // UnityEngine.Debug.Log($"{this.r_coeff} x={central_body_position.x}; y={central_body_position.y}; z={central_body_position.z}");
-
 
             double mult_sin_asdending_node_i_angle_sum = Math.Sin(angle_sum) * Math.Sin(radians_ascending_node_longitude) * Math.Cos(radians_i);
             double mult_cos_asdending_node_i_angle_sum = Math.Sin(angle_sum) * Math.Cos(radians_ascending_node_longitude) * Math.Cos(radians_i);
@@ -165,17 +124,9 @@ namespace SolarSystem
             double x = central_body_position.x + radius * (mult_angle_sum_cos_ascending_node - mult_sin_asdending_node_i_angle_sum);
             double y = central_body_position.y + radius * (mult_angle_sum_sin_ascending_node + mult_cos_asdending_node_i_angle_sum);
             double z = central_body_position.z + radius * Math.Sin(angle_sum) * Math.Sin(radians_i);
-            // if (this.r_coeff == 10000)
-            //     UnityEngine.Debug.Log($"!{this.r_coeff} radius={radius} {mult_angle_sum_cos_ascending_node}; {mult_angle_sum_sin_ascending_node}; {mult_sin_asdending_node_i_angle_sum}; {mult_cos_asdending_node_i_angle_sum}");
 
             if (this.r_coeff == 10000)
                 UnityEngine.Debug.Log($"!{this.r_coeff} {x}; {y}; {y};");
-            
-            // UnityEngine.Debug.Log($"central={central_body_position.z}; r={radius}; sum={angle_sum}; sin={Math.Sin(angle_sum)}; i={Converter.degree_to_radians(this.i)}, i={this.i}; sin={Math.Sin(Converter.degree_to_radians(this.i))}");
-
-            // UnityEngine.Debug.Log($"x={x}; y={y}; z={z}");
-            // UnityEngine.Debug.Log($"central. x={central_body_position.x}; y={central_body_position.y}; z={central_body_position.z}");
-            // UnityEngine.Debug.Log($"{this.r_coeff} x={x}; y={y}; z={z}");
 
             return new BodyCoords
             {

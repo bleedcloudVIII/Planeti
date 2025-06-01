@@ -15,28 +15,13 @@ namespace SolarSystem
 
     public class SolarSystemObjectInfo
     {
-        // Само тело
         public SolarSystemObject body;
-
-        // Тип космического тела
         public SolarSystemObjectType body_type;
-
-        // Количество ступников
         public int count_of_sputnik;
-
-        // Ускорение свободного падения (м/с^2)
         public double g;
-
-        // Первая космическая (км/с)
         public double first_space_speed;
-
-        // Вторая космическая
         public double second_space_speed;
-
-        // Когда открыт объект
         public string openear;
-
-        // Кто открыл
         public string openear_by;
     }
 
@@ -50,8 +35,8 @@ namespace SolarSystem
             g = 3.7,
             first_space_speed = 3.1,
             second_space_speed = 4.25,
-            openear = "начало XVII века",
-            openear_by = "Галилео Галилей"
+            openear = "РќР°С‡Р°Р»Рѕ XVII РІРµРєР°",
+            openear_by = "Р“Р°Р»РёР»РµРѕ Р“Р°Р»РёР»РµР№"
         };
 
         public static SolarSystemObjectInfo VenusInfo = new SolarSystemObjectInfo
@@ -62,8 +47,8 @@ namespace SolarSystem
             g = 8.87,
             first_space_speed = 7.328,
             second_space_speed = 10.363,
-            openear = "1610 год нашей эры",
-            openear_by = "Галилео Галилей"
+            openear = "1610 пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ",
+            openear_by = "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ"
         };
 
         public static SolarSystemObjectInfo EarthInfo = new SolarSystemObjectInfo
@@ -86,8 +71,8 @@ namespace SolarSystem
             g = 3.73,
             first_space_speed = 3.6,
             second_space_speed = 5.0,
-            openear = "1610 год нашей эры",
-            openear_by = "Галилео Галилей"
+            openear = "1610 пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ",
+            openear_by = "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ"
         };
 
         public static SolarSystemObjectInfo JupiterInfo = new SolarSystemObjectInfo
@@ -98,8 +83,8 @@ namespace SolarSystem
             g = 24.79,
             first_space_speed = 42.58,
             second_space_speed = 59.5,
-            openear = "1610 год нашей эры",
-            openear_by = "Галилео Галилей"
+            openear = "1610 пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ",
+            openear_by = "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ"
         };
 
         public static SolarSystemObjectInfo SaturnInfo = new SolarSystemObjectInfo
@@ -110,8 +95,8 @@ namespace SolarSystem
             g = 24.79,
             first_space_speed = 25.535,
             second_space_speed = 35.5,
-            openear = "1610 год нашей эры",
-            openear_by = "Галилео Галилей"
+            openear = "1610 пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ",
+            openear_by = "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ"
         };
 
         public static SolarSystemObjectInfo UranusInfo = new SolarSystemObjectInfo
@@ -122,8 +107,8 @@ namespace SolarSystem
             g = 24.79,
             first_space_speed = 15.6,
             second_space_speed = 21.3,
-            openear = "13 марта 1781 года нашей эры",
-            openear_by = "Уильям Гершель"
+            openear = "13 пїЅпїЅпїЅпїЅпїЅ 1781 пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ",
+            openear_by = "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ"
         };
 
         public static SolarSystemObjectInfo NetputeInfo = new SolarSystemObjectInfo
@@ -134,8 +119,8 @@ namespace SolarSystem
             g = 24.79,
             first_space_speed = 15.6,
             second_space_speed = 21.3,
-            openear = "23 сентября 1846 года нашей эры",
-            openear_by = "Урбен Жан Жозеф Леверье, Джон Куч Адамс, Иоганн Готтфрид Галле и Генрих Луи д’Арре"
+            openear = "23 пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ 1846 пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ",
+            openear_by = "пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ"
         };
 
         public static SolarSystemObjectInfo MoonInfo = new SolarSystemObjectInfo
@@ -170,8 +155,8 @@ namespace SolarSystem
             g = 0.62,
             first_space_speed = 0.855,
             second_space_speed = 1.2,
-            openear = "1930 год нашей эры",
-            openear_by = "Клайд Томбо"
+            openear = "1930 пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ",
+            openear_by = "пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ"
         };
     }
 }
