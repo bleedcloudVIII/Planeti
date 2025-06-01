@@ -97,7 +97,7 @@ namespace SolarSystem
         {
             double eccentric_anomaly = this.eccentric_anomaly(day);
             double true_anomaly = this.true_anomaly(eccentric_anomaly);
-            double persiapsis_changing = this.changing_periapsis_argument * 0;
+            double persiapsis_changing = this.changing_periapsis_argument * (this.N -  revolutions_count);
             double periapsis_argument = Converter.degree_to_radians(this.periapsis_argument_0) - persiapsis_changing;
             double radius = this.r(eccentric_anomaly);
             double angle_sum = true_anomaly + periapsis_argument;
